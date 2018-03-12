@@ -10,51 +10,38 @@ public class Libro extends Risorsa implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	
-	private String titolo;
     private Vector <String> autore_i; 
     private int numPagine;
-    private int annoPub;
     private String casaEditrice;
-    private String lingua;
-    private String genere;
     
-    public static final String DESCRIZIONE_LIBRO = "Titolo: %s\n\t\tAutore/i: %s\n\t\tNumero licenze: %d\n\t\tNumero pagine: %d\n\t\tAnno di pubblicazione: %d\n\t\tCasa editrice: %s\n\t\tLingua: %s\n\t\tGenere: %s\n";
+   public static final String DESCRIZIONE_LIBRO = "Titolo: %s\n\t\tAutore/i: %s\n\t\tNumero pagine: %d\n\t\tAnno di pubblicazione: %d\n\t\tCasa editrice: %s\n\t\tLingua: %s\n\t\tGenere: %s\n\t\tNumero licenze: %d\n";
     
     /**
-     * Metodo costruttore della classe Libro
-     * 
-     * Pre: a != null
-     * Post: autore_i != null
-     * 
-     * @param licenze: numero delle licenze del libro
-     * @param t: titolo del libro
-     * @param a: autore/i del libro
-     * @param np: numero delle pagine del libro
-     * @param ap: anno di pubblicazione del libro
-     * @param ce: casa editrice del libro
-     * @param l: lingua in cui e' scritto il libro
-     * @param g: genere del libro
-     */
-    public Libro(int licenze, String t, Vector <String> a, int np, int ap, String ce, String l, String g)
+    * Metodo costruttore della classe Libro
+    * 
+    * Pre: a != null
+    * Post: autore_i != null
+    * 
+    * @param titolo: titolo del libro
+    * @param licenze: numero delle licenze del libro
+    * @param a: autore/i del libro
+    * @param np: numero delle pagine del libro
+    * @param ap: anno di pubblicazione del libro
+    * @param ce: casa editrice del libro
+    * @param l: lingua in cui e' scritto il libro
+    * @param g: genere del libro
+    */
+    public Libro(String titolo, int licenze, String genere, int annoPub, String lingua, Vector <String> a, int np, String ce)
     {
-    	   super(t, licenze);
+    	   super(titolo, licenze, genere, annoPub, lingua);
     	   this.autore_i = a;
-    	   this.titolo = t;
     	   this.numPagine = np;
-    	   this.annoPub = ap;
     	   this.casaEditrice = ce;
-    	   this.lingua = l;
-    	   this.genere = g;
     }
     
     /**
-     * Metodi get per il ritorno dei vari attributi della classe Libro
-     */
-    public String getTitolo()
-    {
-    	    return titolo;
-    }
-    
+    * Metodi get per il ritorno dei vari attributi della classe Libro
+    */
     public String getAutore()
     {
         	StringBuffer aut = new StringBuffer();
@@ -68,20 +55,10 @@ public class Libro extends Risorsa implements Serializable
         	
         	return aut.toString();
     }
-    
-    public int getAnnoPub()
-    {
-    	    return annoPub;
-    }
-    
+        
     public String getCasaEditrice()
     {
     	    return casaEditrice;
-    }
-    
-    public String getGenere()
-    {
-    	    return genere;
     }
     
     /**
@@ -96,7 +73,7 @@ public class Libro extends Risorsa implements Serializable
        StringBuffer ris = new StringBuffer();
        String aut = getAutore();
        
-       ris.append(String.format(DESCRIZIONE_LIBRO, titolo, aut, getNumLicenze(), numPagine, annoPub, casaEditrice, lingua, genere));
+       ris.append(String.format(DESCRIZIONE_LIBRO, getTitolo(), aut, numPagine, getAnnoPub(), casaEditrice, getLingua(), getGenere(), getNumLicenze()));
        return ris.toString();
     }
     

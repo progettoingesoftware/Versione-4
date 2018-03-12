@@ -3,10 +3,10 @@ package it.ing.sw.v4.p3;
 import java.time.LocalDate;
 import java.util.Vector;
 
-import it.ing.sw.v3.p1.Fruitore;
-import it.ing.sw.v3.p2.Categoria;
-import it.ing.sw.v3.p2.Libro;
-import it.ing.sw.v3.p2.Risorsa;
+import it.ing.sw.v4.p1.Fruitore;
+import it.ing.sw.v4.p2.Categoria;
+import it.ing.sw.v4.p2.Libro;
+import it.ing.sw.v4.p2.Risorsa;
 
 public class ArchivioPrestiti 
 {
@@ -124,20 +124,20 @@ public class ArchivioPrestiti
 	    		  	 num++;
 	    }
 	    
-	    if(c.getNumeroMaxRisorseInPrestito() < num)
+	    if(c.getNumeroMaxRisorseInPrestito() > num)
 	         return true;
 	    else
 	         return false;
 	}
 	
 	/**
-	 * Metodo per il controllo della disponibilità di una risorsa
+	 * Metodo per il controllo della disponibilita' di una risorsa
 	 * 
 	 * Pre: elencoPrestiti != null
 	 * 
 	 * @param r: la risorsa di cui effettuare il controllo
-	 * @return boolean: true se il numero delle licenze della risorsa è inferiore o uguale
-	 *         al numero dei prestiti in cui la risorsa è coinvolta
+	 * @return boolean: true se il numero delle licenze della risorsa e' inferiore o uguale
+	 *         al numero dei prestiti in cui la risorsa e' coinvolta
 	 */
 	public boolean controlloDisponibilitaRisorsa(Risorsa r)
 	{
@@ -151,12 +151,12 @@ public class ArchivioPrestiti
 	    		    	num++;
 	    }
 	    
-	    if(r.getNumLicenze() < num)
+	    if(r.getNumLicenze() > num)
 	    	     return true;
 	    else
 	         return false;
 	}
-	
+
 	/**
 	 * Metodo per la ricerca di una risorsa in archivio in base al titolo o ad una parola
 	 * contenuta nel titolo
@@ -166,7 +166,7 @@ public class ArchivioPrestiti
 	 * @param n: il titolo della risorsa o una parola in esso contenuta
 	 * @return il vettore con le risorse aventi come titolo n o una parola n contenuta nel titolo
 	 */
-    public Vector<Risorsa> ricercaRisorsaPerTitoloLibro(String n)
+    public Vector<Risorsa> ricercaRisorsaPerTitolo(String n)
     {
       	Vector <Risorsa> risorseTrovate = new Vector <Risorsa> ();
 
@@ -220,7 +220,7 @@ public class ArchivioPrestiti
 	  * @param anno: l'anno di pubblicazione
 	  * @return il vettore con le risorse aventi anno come anno di pubblicazione
 	  */
-	 public Vector<Risorsa> ricercaRisorsaPerAnnoPubblicazioneLibro(int anno)
+	 public Vector<Risorsa> ricercaRisorsaPerAnnoPubblicazione(int anno)
 	 {
 	    	Vector <Risorsa> risorseTrovate = new Vector <Risorsa> ();
 
@@ -265,138 +265,4 @@ public class ArchivioPrestiti
 	    
 	    return risorseTrovate;
 	}
-	
-    public Vector<Risorsa> ricercaRisorsaPerTitoloFilm(String n)
-    {
-      	Vector <Risorsa> risorseTrovate = new Vector <Risorsa> ();
-
-      	for(int i = 0; i < elencoPrestiti.size(); i++)
-	    {
-      		Prestito p = elencoPrestiti.get(i);
-	     	
-    	        if(p.getRisorsaInPrestito() instanceof Film)
-	        {
-    	        	Film f = (Film) p.getRisorsaInPrestito();
-	    	       if(f.getTitolo().contains(n))
-	    			    risorseTrovate.add(f);
-	        }
-	    }
-
-		return risorseTrovate;
-    }
-    
-	public Vector<Risorsa> ricercaRisorsaPerRegista(String n)
-	{
-	    	Vector <Risorsa> risorseTrovate = new Vector <Risorsa> ();
-	   	    
-	    for(int i = 0; i < elencoPrestiti.size(); i++)
-		{
-	     	Prestito p = elencoPrestiti.get(i);
-	     	
-	    	    if(p.getRisorsaInPrestito() instanceof Film)
-		    {
-		       Film f = (Film) p.getRisorsaInPrestito();
-		    	   if(f.getRegista().contains(n))
-		    			risorseTrovate.add(f);
-		    }
-		}
- 
-	    return risorseTrovate;
-	 }
-	
-	public Vector<Risorsa> ricercaRisorsaPerProduttore(String n)
-	{
-	    	Vector <Risorsa> risorseTrovate = new Vector <Risorsa> ();
-	   	    
-	    for(int i = 0; i < elencoPrestiti.size(); i++)
-		{
-	     	Prestito p = elencoPrestiti.get(i);
-	     	
-	    	    if(p.getRisorsaInPrestito() instanceof Film)
-		    {
-		       Film f = (Film) p.getRisorsaInPrestito();
-		    	   if(f.getProduttore().contains(n))
-		    			risorseTrovate.add(f);
-		    }
-		}
- 
-	    return risorseTrovate;
-	 }
-	
-	public Vector<Risorsa> ricercaRisorsaPerSceneggiatore(String n)
-	{
-	    	Vector <Risorsa> risorseTrovate = new Vector <Risorsa> ();
-	   	    
-	    for(int i = 0; i < elencoPrestiti.size(); i++)
-		{
-	     	Prestito p = elencoPrestiti.get(i);
-	     	
-	    	    if(p.getRisorsaInPrestito() instanceof Film)
-		    {
-		       Film f = (Film) p.getRisorsaInPrestito();
-		    	   if(f.getSceneggiatore().contains(n))
-		    			risorseTrovate.add(f);
-		    }
-		}
- 
-	    return risorseTrovate;
-	 }
-	
-	public Vector<Risorsa> ricercaRisorsaPerInterprete(String n)
-	{
-	    	Vector <Risorsa> risorseTrovate = new Vector <Risorsa> ();
-	   	    
-	    for(int i = 0; i < elencoPrestiti.size(); i++)
-		{
-	     	Prestito p = elencoPrestiti.get(i);
-	     	
-	    	    if(p.getRisorsaInPrestito() instanceof Film)
-		    {
-		       Film f = (Film) p.getRisorsaInPrestito();
-		    	   if(f.getInterprete().contains(n))
-		    			risorseTrovate.add(f);
-		    }
-		}
- 
-	    return risorseTrovate;
-	 }
-	
-	 public Vector<Risorsa> ricercaRisorsaPerAnnoPubblicazioneFilm(int anno)
-	 {
-	    	Vector <Risorsa> risorseTrovate = new Vector <Risorsa> ();
-
-	    for(int i = 0; i < elencoPrestiti.size(); i++)
-		{
-		    	Prestito p = elencoPrestiti.get(i);
-		    	 
-		    if(p.getRisorsaInPrestito() instanceof Film)
-		    {
-		       Film f = (Film) p.getRisorsaInPrestito();
-		    	   if(f.getAnnoPub() == anno)
-		    			risorseTrovate.add(f);
-		    }
-		}
-			
-	    return risorseTrovate;
-	}
-	 
-		public Vector <Risorsa> ricercaRisorsaPerCasaProduzione(String casa)
-		{
-		    	Vector <Risorsa> risorseTrovate = new Vector <Risorsa> ();
-
-		    for(int i = 0; i < elencoPrestiti.size(); i++)
-			{
-			    Prestito p = elencoPrestiti.get(i);
-			    
-			    	if(p.getRisorsaInPrestito() instanceof Film)
-			    	{	
-			    		Film f= (Film) p.getRisorsaInPrestito();
-			    		if(f.getCasaProduzione().equalsIgnoreCase(casa))
-			    			  risorseTrovate.add(f);
-			    	}
-			}
-		    
-		    return risorseTrovate;
-		}
-		
 }

@@ -1,11 +1,9 @@
-package it.ing.sw.v4.p3;
+package logica_4;
 
 import java.time.LocalDate;
 import java.util.Vector;
 
-import it.ing.sw.v4.p1.Fruitore;
-import it.ing.sw.v4.p2.Categoria;
-import it.ing.sw.v4.p2.Risorsa;
+import dominio_4.*;
 
 public class ArchivioPrestiti 
 {
@@ -57,6 +55,28 @@ public class ArchivioPrestiti
     }
     
     /**
+     * Metodo che verifica se un fruitore avente username usef abbia già in prestito la risorsa r
+     *
+     * Pre: (r != null) && (elencoPrestiti != null)
+     * 
+     * @param r: la risorsa
+     * @param usef: lo username del fruitore
+     * @return boolean : true se il fruitore con username usef ha già in prestito la risorsa r
+     */
+    public boolean verificaPresenza(Risorsa r, String usef)
+    {
+    	   for(int i = 0; i < elencoPrestiti.size(); i++)
+    	   {
+    		   Prestito p  = elencoPrestiti.get(i);
+    		   
+    		   if(p.getRisorsaInPrestito().equals(r) && (p.getFruitoreAssociato().getUsername()).equals(usef))
+    		          return true;
+    	   }
+    	   
+    	   return false;
+    }
+    
+    /**
      * Metodo per la terminazione automatica del prestito di una risorsa
      * 
      * Pre: elencoPrestiti != null
@@ -67,7 +87,7 @@ public class ArchivioPrestiti
    	 	{
    	 		Prestito p = elencoPrestiti.get(i);	
    	 		
-   	 		if((LocalDate.now().isAfter(p.getDataDiScadenzaPrestito())))
+   	 	    if((LocalDate.now().equals(p.getDataDiScadenzaPrestito())) || (LocalDate.now().isAfter(p.getDataDiScadenzaPrestito())))
    	 		{
    	 			elencoPrestiti.remove(p);
    	 		}			
@@ -107,11 +127,11 @@ public class ArchivioPrestiti
 	 * Pre: (c != null) && (f != null)
 	 * 
 	 * @param c: la categoria di risorse di cui effettuare il controllo
-	 * @param f: il fruitore di cui effettuare il controllo
+	 * @param usef: lo username del fruitore di cui effettuare il controllo
 	 * @return boolean: true se il fruitore ha un numero di risorse relative ad una stessa categoria minore a quello consentito 
 	 *         per la categoria stessa
 	 */
-	public boolean controlloPerUlteriorePrestito(Categoria c, Fruitore f)
+	public boolean controlloPerUlteriorePrestito(Categoria c, String usef)
 	{
 		int num = 0;
 		
@@ -119,7 +139,7 @@ public class ArchivioPrestiti
 	    {
 	    	   Prestito p = elencoPrestiti.get(i);
 	    	  
-	    	   if(p.getCategoriaAssociata().equals(c) && p.getFruitoreAssociato().equals(f))
+	    	   if(p.getCategoriaAssociata().equals(c) && (p.getFruitoreAssociato().getUsername().equals(usef)))
 	    		  	 num++;
 	    }
 	    

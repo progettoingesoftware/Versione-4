@@ -1,10 +1,12 @@
-package it.ing.sw.v4.p2;
+package interazione_4;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Vector;
 
-import it.ing.sw.InputDati;
+import dominio_4.Film;
+import dominio_4.Libro;
+import utility.InputDati;
 
 /**
  * Questa classe e' di appoggio per l'inserimento dei dati relativi ad una risorsa nel metodo aggiungiRisorsa() 

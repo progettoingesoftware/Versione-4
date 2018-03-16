@@ -1,11 +1,9 @@
-package it.ing.sw.v4.p3;
+package logica_4;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import it.ing.sw.v4.p1.Fruitore;
-import it.ing.sw.v4.p2.Risorsa;
-import it.ing.sw.v4.p2.Categoria;
+import dominio_4.*;
 
 public class Prestito 
 {
@@ -16,7 +14,7 @@ public class Prestito
 	private Risorsa risorsaInPrestito;
 	private boolean prorogaNonEffettuata;
 	
-    public static final String DESCRIZIONE_PRESTITO = "Categoria della risorsa in prestito:\n%s\nRisorsa presa in prestito:\n%s\nData inizio prestito:\n%s\nData scadenza prestito:\n%s\n";
+    public static final String DESCRIZIONE_PRESTITO = "Categoria della risorsa in prestito: %s\nRisorsa presa in prestito:\n\t\t%s\nData inizio prestito: %s\nData scadenza prestito: %s\nProroga gia' effettuata: %s\n";
 	
 	/**
 	 * Metodo costruttore della classe Prestito
@@ -92,38 +90,47 @@ public class Prestito
      * @param daProrogare: il prestito di cui richiedere la proroga
      * @return true se le condizioni per effettuare la proroga del prestito sono soddisfatte
      */
-    public boolean prorogaPrestito()
-    {
-    	   /**
-   	 	* Il primo if verifica che non sia gi√† stata effettuata la proroga per il prestito
-   	 	* Il secondo if verifica che la proroga sia richiesta nel corretto intervallo di tempo
-   	 	*/
-        if(prorogaNonEffettuata)
-   	    {
-   	 		if((LocalDate.now().isBefore(dataDiScadenzaPrestito)))
-   	 		{
-       	 		if((LocalDate.now().isAfter(dataDiScadenzaPrestito.minusDays(categoriaAssociata.getNumeroGiorniRichiestaProroga()))))
-       	 		{
-   	 				setDataDiScadenzaPrestito(LocalDate.now().plusDays(categoriaAssociata.getNumeroMaxGiorniProroga()));
-       	 			setProrogaNonEffettuata();
-   	 				return true;
-       	 		}
-       	    }
-   	 	}
+   public boolean prorogaPrestito()
+   {
+   	   /**
+  	 	* Il primo if verifica che non sia gi‡ stata effettuata la proroga per il prestito
+  	 	* Il secondo if verifica che la proroga sia richiesta nel corretto intervallo di tempo
+  	 	*/
+       if(prorogaNonEffettuata)
+  	    {
+       	    if((LocalDate.now().isBefore(dataDiScadenzaPrestito)))
+  	 		{
+      	 		LocalDate ld2 = dataDiScadenzaPrestito.minusDays(categoriaAssociata.getNumeroGiorniRichiestaProroga());
+  	 			
+  	 			if((LocalDate.now().equals(ld2)) || (LocalDate.now().isAfter(ld2)))
+      	 		{
+  	 				setDataDiScadenzaPrestito(dataDiScadenzaPrestito.plusDays(categoriaAssociata.getNumeroMaxGiorniProroga()));
+      	 			setProrogaNonEffettuata();
+  	 				return true;
+  	 				
+      	 		}
+      	    }
+  	 	}
 	    return false;
-    }
+   }
+
 
 	/**
      * Metodo toString() per la creazione di una stringa descrittiva di un prestito
      * @return la stringa descrittiva del prestito
      */
-    public String toString()
-    {
-      	StringBuffer ris = new StringBuffer();
-    	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Fruitore.FORMATO_DATA);
-      	
-      	ris.append(String.format(DESCRIZIONE_PRESTITO, categoriaAssociata.getNome(), risorsaInPrestito.toString(), dataDiInizioPrestito.format(formatter), dataDiScadenzaPrestito.format(formatter)));
-        return ris.toString();
-    } 
+   public String toString()
+   {
+       StringBuffer ris = new StringBuffer();
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Fruitore.FORMATO_DATA);
+ 	
+	    String perProroga = "no";
+ 	    if(!prorogaNonEffettuata)
+ 		      perProroga = "si";
+ 	
+ 	    ris.append(String.format(DESCRIZIONE_PRESTITO, categoriaAssociata.getNome(), risorsaInPrestito.toString(), dataDiInizioPrestito.format(formatter), dataDiScadenzaPrestito.format(formatter), perProroga));
+       return ris.toString();
+
+   } 
     
 }

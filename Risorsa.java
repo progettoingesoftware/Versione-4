@@ -1,4 +1,4 @@
-package it.ing.sw.v4.p2;
+package dominio_4;
 
 import java.io.Serializable;
 

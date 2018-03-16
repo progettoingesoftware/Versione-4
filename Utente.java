@@ -1,10 +1,9 @@
-package it.ing.sw.v4.p1;
+package logica_4;
 
 import java.io.Serializable;
 import java.util.Vector;
 
-import it.ing.sw.v4.p2.Categoria;
-import it.ing.sw.v4.p2.Risorsa;
+import dominio_4.*;
 
 /**
  * Questa classe rappresenta il modello di un Utente

@@ -1,10 +1,10 @@
-package it.ing.sw.v4.p4;
+package interazione_4;
 
 import java.io.Serializable;
 import java.util.Vector;
 
-import it.ing.sw.v4.p1.*;
-import it.ing.sw.v4.p2.*;
+import dominio_4.*;
+import logica_4.*;
 
 /**
  * Qusta classe contiene dei metodi per la creazione della struttura preimpostata di alcuni aspetti del sistema
@@ -112,6 +112,8 @@ public class StrutturaSistema implements Serializable
 		c2.aggiungiSottoCategoria(s6);
 		c2.aggiungiSottoCategoria(s7);
 		c2.aggiungiSottoCategoria(s8);
+		c2.aggiungiSottoCategoria(s9);
+		c2.aggiungiSottoCategoria(s10);
 		    
 		Vector <String> att1 = new Vector <String> ();
 		att1.add("Jack Nicholson");
@@ -133,6 +135,7 @@ public class StrutturaSistema implements Serializable
 		Film f3 = new Film("Blade Runner", 2, "Fantascienza", 1982, "italiano", "Ridley Scott", att3, 120);
 		s6.aggiungiRisorsa(f1);
 		s7.aggiungiRisorsa(f2);
+		s8.aggiungiRisorsa(f2);
 		s10.aggiungiRisorsa(f3);
 	}
 	

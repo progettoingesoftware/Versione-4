@@ -1,4 +1,4 @@
-package it.ing.sw.v4.p2;
+package dominio_4;
 
 import java.io.Serializable;
 import java.util.Vector;
@@ -25,7 +25,7 @@ public class Categoria implements Serializable
    public static final String DESCRIZIONE_CATEGORIA_COMPOSTA = "Nome categoria: %s\nSottocategorie in essa contenute:\n";
    public static final String ELENCO_SOTTOCATEGORIE_VUOTO = "\tAl momento non sono presenti sottocategorie\n";
    public static final String ELENCO_RISORSE_VUOTO = "\t\tAl momento non sono presenti risorse\n";
-
+ 
    public static final String RIC_PER_TITOLO = "titolo";
    public static final String RIC_PER_AUTORE_I = "autore_i";
    public static final String RIC_PER_GENERE = "genere";
@@ -33,7 +33,7 @@ public class Categoria implements Serializable
    public static final String RIC_PER_CASAED = "casaEditrice";
    public static final String RIC_PER_REGISTA = "regista";
    public static final String RIC_PER_ATTORE_I = "attore_i";
- 
+    
    /**
     * Metodo costruttore della classe Categoria
     * @param n: il nome della categoria
@@ -183,32 +183,32 @@ public class Categoria implements Serializable
    	    	    switch(cr)
    	    	    {
    	    	        case RIC_PER_TITOLO: if(r.getTitolo().indexOf((String)o) > -1)
-  	    	    	                         risorseCercate.add(r);
-   	    	                             break;
+   	    	        									risorseCercate.add(r);
+   	    	                             		  break;
    	    	                       
    	    	        case RIC_PER_AUTORE_I: if(((Libro)r).getAutore().indexOf((String)o) > -1)
-     	                     	              risorseCercate.add(r);
-                                       		break;
+   	    	        									risorseCercate.add(r);
+                                       				break;
    	    	                       
    	    	        case RIC_PER_GENERE: if(((Libro)r).getGenere().equalsIgnoreCase((String)o))
    	    	        	                     	      risorseCercate.add(r);
-   	    	                             break;
+   	    	                             		  break;
    	    	                    
    	    	        case RIC_PER_ANNOPUB: if(((Libro)r).getAnnoPub() ==  (Integer)o)
-     	                     	              risorseCercate.add(r);
-   	    	        					  break;
+   	    	        								  risorseCercate.add(r);
+   	    	        							  break;
                       
    	    	        case RIC_PER_CASAED: if(((Libro)r).getCasaEditrice().equalsIgnoreCase((String)o))
-     	                     	               risorseCercate.add(r);
-   	    	        					 break;
+   	    	        								  risorseCercate.add(r);
+   	    	        						      break;
    	    	        					 
    	    	        case RIC_PER_REGISTA: if(((Film)r).getRegista().indexOf((String)o) > -1)
-   	    	        							risorseCercate.add(r);
-   	    	        					break; 
+   	    	        									risorseCercate.add(r);
+   	    	        							   break; 
                 
    	    	        case RIC_PER_ATTORE_I: if(((Film)r).getAttore().indexOf((String)o) > -1)
-   	    	        							risorseCercate.add(r);
-   	    	        					break;
+   	    	        									risorseCercate.add(r);
+   	    	        								break;
    	    	    } 	     
    	    }
    	    
@@ -256,6 +256,37 @@ public class Categoria implements Serializable
    public void aggiungiSottoCategoria(SottoCategoria sc)
    {
 	   elencoSottoCategorie.add(sc);
+   }
+   
+   /**
+    * Metodo che dato una stringa t che rappresenta il titolo della nuova risorsa da inserire in archivio, verifica 
+    * se all'interno della categoria associata alla nuova risorsa sia già presente una risorsa con lo stesso titolo
+    * 
+    * Pre: elencoSottoCategorie != null  && elencoRisorse != null
+    * 
+    * @param t: il titolo della vuova risorsa da inserire
+    * @return true se è già presente una risorsa con il titolo della nuova risorsa da inserire
+    */
+   public boolean verificaPresenza(String t)
+   {
+	  boolean presente = false;
+	   
+	  for(int i = 0; i < elencoSottoCategorie.size(); i++)
+	  {
+		  SottoCategoria sc = elencoSottoCategorie.get(i);
+		  
+		  for(int j = 0; j < sc.getElencoRisorse().size(); j++)
+		  {
+			  Risorsa r = sc.getElencoRisorse().get(j);
+			  
+			  if(r.getTitolo().equalsIgnoreCase(t))
+			  {
+				  presente = true;
+				  break;
+			  }	   
+		  }
+	   }
+	   return presente;
    }
    
    /**

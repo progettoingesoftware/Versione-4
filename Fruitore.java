@@ -1,13 +1,9 @@
-package it.ing.sw.v4.p1;
+package logica_4;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Vector;
-
-import it.ing.sw.v4.p3.ArchivioPrestiti;
-import it.ing.sw.v4.p3.Prestito;
-
 
 /**
  * Questa classe rappresenta il modello di un Fruitore
@@ -96,16 +92,18 @@ public class Fruitore extends Utente implements Serializable
      */
     public boolean rinnovaIscrizione()
     {
-		 if((LocalDate.now().isBefore(dataDiScadenza)))
-		 {
-	        if((LocalDate.now().isAfter(dataDiScadenza.minusDays(DIECI_GIORNI))))
-	 		{
-				setDataDiScadenza(LocalDate.now().plusYears(TERMINE_SCADENZA));
-	 			return true;
-	 		}
-		 }
-		 
-		 return false;
+      	if((LocalDate.now().isBefore(dataDiScadenza))) 
+		{
+			LocalDate ld = dataDiScadenza.minusDays(DIECI_GIORNI);
+			
+			if((LocalDate.now().equals(ld)) || (LocalDate.now().isAfter(ld))) 
+			{
+				setDataDiScadenza(dataDiScadenza.plusYears(Fruitore.TERMINE_SCADENZA));
+				return true;
+			}
+		}
+
+		return false;
     }
     
     /**

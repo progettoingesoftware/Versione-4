@@ -1,7 +1,9 @@
-package it.ing.sw.v4.p2;
+package logica_4;
 
 import java.io.Serializable;
 import java.util.Vector;
+
+import dominio_4.Categoria;
 
 /**
  * Questa classe rappresenta il modello di un Archivio

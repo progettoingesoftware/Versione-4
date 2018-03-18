@@ -88,7 +88,7 @@ public class Fruitore extends Utente implements Serializable
      * il primo verifica che la data corrente preceda quella di scadenza indicata per lo specifico fruitore;
 	 * il secondo verifica che la data corrente succeda quella di scadenza (indicata per lo specifico fruitore) diminuita di un periodo di 10 giorni
      * @param af: l'anagrafica fruitore
-     * @return true se il fruitore può effettuare l'iscrizione
+     * @return true se il fruitore puo' effettuare l'iscrizione
      */
     public boolean rinnovaIscrizione()
     {

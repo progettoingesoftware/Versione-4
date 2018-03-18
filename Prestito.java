@@ -1,12 +1,15 @@
 package logica_4;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import dominio_4.*;
 
-public class Prestito 
+public class Prestito implements Serializable
 {
+	private static final long serialVersionUID = 1L;
+	
 	private LocalDate dataDiInizioPrestito;
 	private LocalDate dataDiScadenzaPrestito;
 	private Categoria categoriaAssociata;

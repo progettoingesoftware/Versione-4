@@ -134,7 +134,6 @@ public class StrutturaSistema implements Serializable
 		Film f2 = new Film("WALL-E", 3, "Animazione", 2008, "italiano", "Andrew Stanton", att2, 100);
 		Film f3 = new Film("Blade Runner", 2, "Fantascienza", 1982, "italiano", "Ridley Scott", att3, 120);
 		s6.aggiungiRisorsa(f1);
-		s7.aggiungiRisorsa(f2);
 		s8.aggiungiRisorsa(f2);
 		s10.aggiungiRisorsa(f3);
 	}

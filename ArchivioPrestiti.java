@@ -1,17 +1,19 @@
 package logica_4;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Vector;
 
 import dominio_4.*;
 
-public class ArchivioPrestiti 
+public class ArchivioPrestiti implements Serializable
 {
+	private static final long serialVersionUID = 1L;
+
 	private Vector <Prestito> elencoPrestiti;
 	
 	public static final String INTESTAZIONE_ELENCO = "Elenco dei prestiti in corso: \n";
     
-	
 	/**
 	 * Metodo costruttore della classe ArchivioPrestiti
 	 * 

@@ -492,7 +492,7 @@ public class GestoreMenu implements Serializable
     	       System.out.println(f.visualizzaPrestitiInCorso(ap));
     	
     	       int num = InputDati.leggiIntero(Costanti.INS_NUMERO_PRESTITO_PROROGA, Costanti.NUM_MINIMO, ap.getPrestiti(f.getUsername()).size());
-    	       Prestito pr = ap.getElencoPrestiti().get(num-Costanti.NUM_MINIMO);
+    	       Prestito pr = ap.getPrestiti(f.getUsername()).get(num-Costanti.NUM_MINIMO);
     	
     	       if(f.registraProrogaPrestito(pr))
     	       {
@@ -550,17 +550,17 @@ public class GestoreMenu implements Serializable
       */
      public Vector <Risorsa> ricercaRisorsaLibri(Utente ut, Categoria c)
      {
-    	    int numScelta = InputDati.leggiIntero(Costanti.AVVIO_RICERCA_RISORSE, Costanti.NUM_MINIMO, Costanti.NUM_MASSIMO_RICERCA);
+    	    int numScelta = InputDati.leggiIntero(Costanti.AVVIO_RICERCA_LIBRI, Costanti.NUM_MINIMO, Costanti.NUM_MASSIMO_RICERCA);
     	    Object o = null;
     	    String s = "";
     	
     	    switch(numScelta)
     	    {
- 	    	   case 1: o = InputDati.leggiStringa(Costanti.INS_TITOLO_RISORSA);
+ 	    	   case 1: o = InputDati.leggiStringa(Costanti.INS_PAROLA_TITOLO_RISORSA);
  	    			    s = Categoria.RIC_PER_TITOLO;
  	    			    break;
  	    		
- 	    	   case 2: o = InputDati.leggiStringa(Costanti.INS_AUTORE_LIBRO); 
+ 	    	   case 2: o = InputDati.leggiStringa(Costanti.INS_COGNOME_AUTORE_LIBRO); 
  	    		        s = Categoria.RIC_PER_AUTORE_I;
  	    		        break;
  	       
@@ -598,15 +598,15 @@ public class GestoreMenu implements Serializable
     	
     	    switch(numScelta)
     	    {
-    	    	case 1: o = InputDati.leggiStringa(Costanti.INS_TITOLO_RISORSA);
-    	    			 s = Categoria.RIC_PER_TITOLO;
+    	    	case 1: o = InputDati.leggiStringa(Costanti.INS_PAROLA_TITOLO_RISORSA);
+    	    			s = Categoria.RIC_PER_TITOLO;
  	    			     break;
  	    		
-    	    	case 2: o = InputDati.leggiStringa(Costanti.INS_REGISTA_FILM); 
+    	    	case 2: o = InputDati.leggiStringa(Costanti.INS_COGNOME_REGISTA_FILM); 
  	    		         s = Categoria.RIC_PER_REGISTA;
  	    		         break;
  	    		         	
-    	    	case 3: o = InputDati.leggiStringa(Costanti.INS_ATTORE_FILM);
+    	    	case 3: o = InputDati.leggiStringa(Costanti.INS_COGNOME_ATTORE_FILM);
  	    		         s = Categoria.RIC_PER_ATTORE_I;
  	                     break;
  	    	   
@@ -679,6 +679,18 @@ public class GestoreMenu implements Serializable
 	    	s += Costanti.NO_VALUTAZIONE;
 	    
 	    return s;
+   }
+   
+   /**
+    * Metodo di interazione con l'utente per la conferma della richiesta di logout
+    * @return boolean : true se l'utente conferma il logout
+    */
+   public boolean richiestaLogout()
+   {
+   	if(InputDati.leggiUpperChar(Costanti.RICHIESTA_LOGOUT, "SN") == 'S')
+   		return true;
+   	else
+   		return false;
    }
    
     /**
@@ -832,9 +844,16 @@ public class GestoreMenu implements Serializable
 								letteraMenu = 'd';
 								break;
 	        	
-						case 8: letteraMenu = 'a';
-	        		        	attualef = null;
-	        		        	break;
+						case 8: if(richiestaLogout())
+								{
+									letteraMenu = 'a';
+									attualef = null;
+								}
+								else
+								{
+									letteraMenu = 'd';
+								}
+								break;
 					}
 
 		        	af.decadenzaFruitore();
@@ -901,9 +920,16 @@ public class GestoreMenu implements Serializable
      	     					letteraMenu = 'f';
      	     					break;
      	     	    
-	        	     	case 7: letteraMenu = 'a';
-     	        		    	attualeop = null;
-     	        		    	break;
+	        	     	case 7: if(richiestaLogout())
+    	     					{
+	        	     				letteraMenu = 'a';
+	        	     				attualeop = null;
+    	     					}
+    	     					else
+    	     					{
+    	     						letteraMenu = 'f';
+    	     					}
+    	     					break;
 					}
 
 		        	af.decadenzaFruitore();

@@ -10,7 +10,7 @@ public class Main
 	public static final String NOME_FILE = "gestoreRisorse.txt";								
 	public static final String MSG_NO_CAST = "ATTENZIONE PROBLEMI CON IL CAST";			
 	public static final String MSG_OK_FILE = "CARICAMENTO DA FILE EFFETTUATO";			
-	public static final String MSG_NO_FILE = "CARICAMENTO DA FILE NON RIUSCITO. OCCORRE CREARE UNA NUOVA ANAGRAFICA DEI FRUITORI E UN NUOVO ARCHIVIO DELLE RISORSE";			
+	public static final String MSG_NO_FILE = "CARICAMENTO DA FILE NON RIUSCITO. OCCORRE CREARE UNA NUOVA ANAGRAFICA DEI FRUITORI, UN NUOVO ARCHIVIO DELLE RISORSE E UN NUOVO ARCHIVIO DEI PRESTITI";			
 	public static final String MSG_SALVA = "SALVATAGGIO DATI";
 	public static final String ERRORE_CONVERSIONE_DATA = "Attenzione! Si e' verificato un errore di conversione della data";	
 	

@@ -18,7 +18,7 @@ public class InserimentoRisorsa implements Serializable
 	
 	public static final String INS_TITOLO = "Inserisci il titolo:\n";
     public static final String INS_NUMLICENZE = "Inserisci il numero delle licenze:\n";
-    public static final String INS_AUTORE = "Inserisci un autore:\n";
+    public static final String INS_AUTORE = "Inserisci nome e cognome di un autore:\n";
     public static final String INS_ALTRO_AUTORE = "Vuoi inserire un altro autore (S/N)?\n";
     public static final String INS_NUMPAGINE = "Inserisci il numero delle pagine:\n";
     public static final String INS_ANNOP = "Inserisci l'anno di pubblicazione:\n";
@@ -26,8 +26,8 @@ public class InserimentoRisorsa implements Serializable
     public static final String INS_LINGUA = "Inserisci la lingua:\n";
     public static final String INS_GENERE = "Inserisci il genere:\n";
     
-    public static final String INS_REGISTA = "Inserisci il regista:\n";
-    public static final String INS_ATTORE = "Inserisci un attore:\n";
+    public static final String INS_REGISTA = "Inserisci nome e cognome del regista:\n";
+    public static final String INS_ATTORE = "Inserisci nome e cognome di un attore:\n";
     public static final String INS_ALTRO_ATTORE = "Vuoi inserire un altro attore (S/N)?\n";
     public static final String INS_DURATAMIN = "Inserisci la durata (in minuti):\n";
     

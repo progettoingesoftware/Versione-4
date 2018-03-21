@@ -17,7 +17,7 @@ public class ArchivioPrestiti implements Serializable
 	/**
 	 * Metodo costruttore della classe ArchivioPrestiti
 	 * 
-	 * Post: elencoPrestiti != null
+	 * @post: elencoPrestiti != null
 	 */
 	public ArchivioPrestiti()
 	{
@@ -26,8 +26,9 @@ public class ArchivioPrestiti implements Serializable
 	
 	/**
 	 * Metodo get per il ritorno dell'attributo elencoPrestiti
+	 * @return l'attributo elencoPrestiti della classe ArchivioPrestiti	 
 	 */
-	public Vector<Prestito> getElencoPrestiti()
+	public Vector <Prestito> getElencoPrestiti()
 	{
 		return elencoPrestiti;
 	}
@@ -36,7 +37,7 @@ public class ArchivioPrestiti implements Serializable
      * Metodo che dato lo username del fruitore restituisce il vettore contenente i prestiti fatti
      * dal fruitore avente usef come username
      * 
-     * Pre: elencoPrestiti != null
+     * @pre: elencoPrestiti != null
      * 
      * @param usef: lo username del fruitore
      * @return il vettore contenente i prestiti fatti dal fruitore con username usef
@@ -59,7 +60,7 @@ public class ArchivioPrestiti implements Serializable
     /**
      * Metodo che verifica se un fruitore avente username usef abbia già in prestito la risorsa r
      *
-     * Pre: (r != null) && (elencoPrestiti != null)
+     * @pre: (r != null) && (elencoPrestiti != null)
      * 
      * @param r: la risorsa
      * @param usef: lo username del fruitore
@@ -81,7 +82,7 @@ public class ArchivioPrestiti implements Serializable
     /**
      * Metodo per la terminazione automatica del prestito di una risorsa
      * 
-     * Pre: elencoPrestiti != null
+     * @pre: elencoPrestiti != null
      */
     public void scadenzaPrestito()
     {
@@ -99,8 +100,8 @@ public class ArchivioPrestiti implements Serializable
     /**
      * Metodo per l'aggiunta di un prestito all'archivio dei prestiti
      * 
-     * Pre: (p != null) && !(elencoPrestiti.contains(p))
-     * Post: elencoRisorse.contains(p)
+     * @pre: (p != null) && !(elencoPrestiti.contains(p))
+     * @post: elencoRisorse.contains(p)
      * 
      * @param p: il prestito da aggiungere
      */
@@ -112,8 +113,8 @@ public class ArchivioPrestiti implements Serializable
 	/**
 	 * Metodo per la rimozione di un prestito dall'archivio dei prestiti
 	 * 
-	 * Pre: (p != null) && (elencoRisorse.contains(p))
-     * Post: !(elencoRisorse.contains(p))
+	 * @pre: (p != null) && (elencoRisorse.contains(p))
+     * @post: !(elencoRisorse.contains(p))
 	 * 
 	 * @param p: il prestito da rimuovere
 	 */
@@ -126,7 +127,7 @@ public class ArchivioPrestiti implements Serializable
 	 * Metodo che controlla che un fruitore abbia un numero di risorse in prestito relative ad una categoria
 	 * inferiore al massimo numero di risorse in prestito fissato per quella categoria
 	 * 
-	 * Pre: (c != null) && (f != null)
+	 * @pre: (c != null) && (elencoPrestiti != null)
 	 * 
 	 * @param c: la categoria di risorse di cui effettuare il controllo
 	 * @param usef: lo username del fruitore di cui effettuare il controllo
@@ -154,7 +155,7 @@ public class ArchivioPrestiti implements Serializable
 	/**
 	 * Metodo per il controllo della disponibilita' di una risorsa
 	 * 
-	 * Pre: elencoPrestiti != null
+	 * @pre: (elencoPrestiti != null) && (r != null)
 	 * 
 	 * @param r: la risorsa di cui effettuare il controllo
 	 * @return boolean: true se il numero delle licenze della risorsa e' inferiore o uguale

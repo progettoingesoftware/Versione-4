@@ -23,8 +23,8 @@ public class GestoreMenu implements Serializable
 	 * Metodo di interazione con l'utente per l'aggiunta di un nuovo fruitore all'elenco dei fruitori gia' presenti all'interno di af.
 	 * Vengono effettuati dei controlli sulla correttezza della data di nascita inserita e sulla possibile presenza di fruitori gia' iscritti in possesso delle medesime credenziali indicate
 	 * 
-	 * Pre : af != null
-	 * Pre : af.elenco != null
+	 * @pre : af != null
+	 * @pre : af.elenco != null
 	 * 
 	 * @param af : oggetto di tipo AnagraficaFruitori contenente l'elenco dei fruitori presenti ed i metodi per l'esecuzione dei vari controlli
 	 */
@@ -173,8 +173,8 @@ public class GestoreMenu implements Serializable
 	 * Metodo di interazione con l'utente per l'accesso al sistema.
 	 * Vengono effettuati dei controlli sulla correttezza dello username e della password indicati
 	 * 
-	 * Pre : ag != null
-	 * Pre : ag.elenco != null
+	 * @pre : ag != null
+	 * @pre : ag.elenco != null
 	 * 
 	 * @param ag : oggetto di tipo Anagrafica contenente l'elenco degli utenti presenti ed il metodo per l'accesso
 	 * @return l'utente specificato dalle credenziali indicate
@@ -217,9 +217,9 @@ public class GestoreMenu implements Serializable
 	}
     
     /**
-     * Metodo per l'aggiunta di una risorsa ad una (sotto)categoria dell'archivio
+     * Metodo di interazione con l'operatore per l'aggiunta di una risorsa ad una (sotto)categoria dell'archivio
      * 
-     * Pre: (op != null) && (arc != null) && (arc.getElencoCategorie().size != 0)
+     * @pre: (op != null) && (arc != null) && (arc.getElencoCategorie().size != 0)
      * 
      * @param op: l'operatore che effettua l'aggiunta della risorsa
      * @param arc: l'archivio a cui aggiungere la risorsa
@@ -310,9 +310,9 @@ public class GestoreMenu implements Serializable
     }
      
      /**
-      * Metodo per la rimozione di una risorsa da una (sotto)categoria dell'archivio
+      * Metodo di interazione con l'operatore per la rimozione di una risorsa da una (sotto)categoria dell'archivio
       * 
-      * Pre: (op != null) && (arc != null) && (arc.getElencoCategorie().size != 0)
+      * @pre: (op != null) && (arc != null) && (arc.getElencoCategorie().size != 0)
       * 
       * @param op: l'operatore che effettua la rimozione della risorsa
       * @param arc: l'archivio da cui rimuovere la risorsa
@@ -387,11 +387,11 @@ public class GestoreMenu implements Serializable
      }
      
      /**
-      * Metodo di interazione con l'utente, al quale permette di registrare un prestito se sono rispettate
+      * Metodo di interazione con il fruitore, al quale permette di registrare un prestito se sono rispettate
       * delle condizioni. Se la registrazione del prestito avviene con successo, il prestito viene aggiunto all'archivio
       * dei prestiti
       * 
-      * Pre: (f != null) && (arc != null) && (a != null) && (arc.getElencoCategorie().size != 0)
+      * @pre: (f != null) && (arc != null) && (a != null) && (arc.getElencoCategorie().size != 0)
       * 
       * @param f: il fruitore che vuole effettuare la registrazione del prestito
       * @param arc: l'archivio delle risorse
@@ -478,9 +478,9 @@ public class GestoreMenu implements Serializable
      }
       
      /**
-      * Metodo di interazione con l'utente per la richiesta della proroga di una risorsa
+      * Metodo di interazione con il fruitore per la richiesta della proroga di una risorsa
       * 
-      * Pre: (f != null) && (arc != null) && (ap != null) && (arc.getElencoCategorie().size != 0)
+      * @pre: (f != null) && (arc != null) && (ap != null) && (arc.getElencoCategorie().size != 0)
       * 
       * @param f: il fruitore che richiede la proroga
       * @param ap: l'archivio dei prestiti
@@ -491,16 +491,19 @@ public class GestoreMenu implements Serializable
     	    {
     	       System.out.println(f.visualizzaPrestitiInCorso(ap));
     	
-    	       int num = InputDati.leggiIntero(Costanti.INS_NUMERO_PRESTITO_PROROGA, Costanti.NUM_MINIMO, ap.getPrestiti(f.getUsername()).size());
-    	       Prestito pr = ap.getPrestiti(f.getUsername()).get(num-Costanti.NUM_MINIMO);
-    	
-    	       if(f.registraProrogaPrestito(pr))
+    	       if(InputDati.leggiUpperChar(Costanti.INS_PROCEDERE_PROROGA, "SN") == 'S')
     	       {
-    	    	   System.out.println(Costanti.OP_SUCCESSO);
-    	       }
-    	       else
-    	       {
-    	    	   System.out.println(Costanti.OP_NO_SUCCESSO_PROROGA_1);
+    	    	      int num = InputDati.leggiIntero(Costanti.INS_NUMERO_PRESTITO_PROROGA, Costanti.NUM_MINIMO, ap.getPrestiti(f.getUsername()).size());
+    	          Prestito pr = ap.getPrestiti(f.getUsername()).get(num-Costanti.NUM_MINIMO);
+    	    	
+    	          if(f.registraProrogaPrestito(pr))
+    	          {
+    	    	          System.out.println(Costanti.OP_SUCCESSO);
+    	          }
+    	          else
+    	          {
+    	    	          System.out.println(Costanti.OP_NO_SUCCESSO_PROROGA_1);
+    	          }
     	       }
     	    }
     	    else
@@ -515,7 +518,7 @@ public class GestoreMenu implements Serializable
       * la risorsa che si vuole cercare: in base alla categoria scelta il metodo invocherà
       * il metodo più specifico di ricerca in base alla categoria selezionata
       * 
-      * Pre: (ut != null) && (arc != null) && (arc.getElencoCategorie().size != 0)
+      * @pre: (ut != null) && (arc != null) && (arc.getElencoCategorie().size != 0)
       * 
       * @param ut: l'utente che effettua la ricerca 
       * @param arc: l'archivio delle risorse
@@ -542,7 +545,7 @@ public class GestoreMenu implements Serializable
       * Metodo di interazione con l'utente per la ricerca di un libro secondo diverse opzioni
       * di ricerca
       * 
-      * Pre: (ut != null) && (c != null)
+      * @pre: (ut != null) && (c != null)
       * 
       * @param ut: l'utente che effettua la ricerca
       * @param c: la categoria delle risorse di cui si sta effettuando la ricerca
@@ -584,7 +587,7 @@ public class GestoreMenu implements Serializable
       * Metodo di interazione con l'utente per la ricerca di un film secondo diverse opzioni
       * di ricerca
       * 
-      * Pre: (ut != null) && (c != null)
+      * @pre: (ut != null) && (c != null)
       * 
       * @param ut: l'utente che effettua la ricerca
       * @param c: la categoria delle risorse di cui si sta effettuando la ricerca
@@ -626,7 +629,7 @@ public class GestoreMenu implements Serializable
      * Metodo per la creazione di una stringa descrittiva delle risorse che sono state trovate mediante 
      * una ricerca
      * 
-     * Pre: elencoRisorse != null
+     * @pre: elencoRisorse != null
      * 
      * @param elencoRisorse: il vettore contenente le risorse, risultato dalla ricerca, da stampare
      * @return la stringa desrittiva delle risorse
@@ -652,7 +655,7 @@ public class GestoreMenu implements Serializable
    /**
     * Metodo di interazione con l'utente per la valutazione della disponibilità di una risorsa in archivio
     * 
-    * Pre: (ut != null) && (arc != null) && (ap != null)
+    * @pre: (ut != null) && (arc != null) && (ap != null)
     * 
     * @param ut: l'utente che effettua la valutazione
     * @param arc: l'archivio delle risorse
@@ -668,8 +671,9 @@ public class GestoreMenu implements Serializable
 	    if(risorseTrovate.size() != Costanti.VUOTO)
 	    {
 	    	int num = InputDati.leggiIntero(Costanti.RICHIESTA_DIGITAZIONE_VALUTAZIONE, Costanti.NUM_MINIMO, risorseTrovate.size());
-   	
-	    	if(ap.controlloDisponibilitaRisorsa(risorseTrovate.get(num-Costanti.NUM_MINIMO)))
+	    	Risorsa r = risorseTrovate.get(num-Costanti.NUM_MINIMO);
+	     	
+     	   	if(ut.valutazioneDisponibilita(ap, r))   	
 	    		s += Costanti.RISORSA_DISPONIBILE;
 	    	else
 	    		s += Costanti.RISORSA_NON_DISPONIBILE;
@@ -699,10 +703,7 @@ public class GestoreMenu implements Serializable
      * in cui il primo livello (contraddistinto dalle variabili letterali) indica gli specifici menu', mentre il secondo livello (evidenziato
      * dall'uso della variabile intera 'scelta') indica le opzioni relative ad ogni menu' e le operazioni che vengono indi svolte
      * 
-     * Pre : af != null
-     * Pre : ao != null
-     * Pre : arc != null
-     * Pre : ap != null
+     * @pre : (af != null) && (ao != null) && (arc != null) && (ap != null)
      * 
      * @param af : oggetto di tipo AnagraficaFruitori
      * @param ao : oggetto di tipo AnagraficaOperatori

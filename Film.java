@@ -19,7 +19,7 @@ public class Film extends Risorsa implements Serializable
     /**
      * Metodo costruttore della classe Film
      * 
-     * Pre: a != null
+     * @pre: a != null
      * 
      * @param titolo: titolo del film
      * @param licenze: numero delle licenze del film
@@ -40,6 +40,7 @@ public class Film extends Risorsa implements Serializable
     
     /**
      * Metodi get per il ritorno dei vari attributi della classe Film
+     * @return i vari attributi della classe Film
      */
     public String getRegista()
     {
@@ -68,7 +69,7 @@ public class Film extends Risorsa implements Serializable
     /**
      * Metodo toString() per la creazione di una stringa descrittiva contenente i vari attributi dell'oggetto Film
      * 
-     * Pre: attore_i != null
+     * @pre: attore_i != null
      * 
      * @return la stringa descrittiva del film
      */

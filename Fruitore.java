@@ -26,8 +26,7 @@ public class Fruitore extends Utente implements Serializable
     /**
      * Metodo costruttore della classe Fruitore
      * 
-     * Pre : dn != null
-     * Post : dataDiScadenza == dataDiIscrizione.plusYears(TERMINE_SCADENZA)
+     * @post : dataDiScadenza == dataDiIscrizione.plusYears(TERMINE_SCADENZA)
      * 
      * @param n : nome del fruitore
      * @param c : cognome del fruitore
@@ -54,6 +53,7 @@ public class Fruitore extends Utente implements Serializable
     
     /**
      * Metodi get per il ritorno dei vari attributi della classe Fruitore
+     * @return i vari attributi della classe Fruitore
      */
     public LocalDate getDataDiNascita()
     {
@@ -73,8 +73,8 @@ public class Fruitore extends Utente implements Serializable
     /**
      * Metodo set per la modifica della data di scadenza del servizio
      * 
-     * Pre : nuovads.isAfter(dataDiScadenza)
-     * Post : dataDiScadenza == nuovads.plusYears(TERMINE_SCADENZA)
+     * @pre : nuovads.isAfter(dataDiScadenza)
+     * @post : dataDiScadenza == nuovads.plusYears(TERMINE_SCADENZA)
      * 
      * @param nuovads : data di scadenza aggiornata
      */
@@ -109,7 +109,7 @@ public class Fruitore extends Utente implements Serializable
     /**
      * Metodo che ritorna una stringa contenente i prestiti relativi al fruitore
      * 
-     * Pre: ap != null
+     * @pre: ap != null
      * 
      * @param ap: l'archivio dei prestiti
      * @return la stringa dei prestiti relativi al fruitore
@@ -138,8 +138,8 @@ public class Fruitore extends Utente implements Serializable
     /**
      * Metodo che permette al fruitore di registrare un nuovo prestito
      * 
-     * Pre: ap != null
-     * Post: p in ap
+     * @pre: (ap != null) && (p != null)
+     * @post: p in ap
      * 
      * @param ap: l'archivio prestiti in cui registrare il nuovo prestito
      * @param p: il nuovo prestito
@@ -152,7 +152,7 @@ public class Fruitore extends Utente implements Serializable
     /**
     * Metodo che permette al fruitore di registrare la proroga di un prestito
     * 
-    * Pre: p != null
+    * @pre: p != null
     *
     * @param p: il prestito di cui registrare la proroga
     */

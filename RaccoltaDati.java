@@ -19,15 +19,12 @@ public class RaccoltaDati implements Serializable
     /**
     * Metodo costruttore della classe RaccoltaDati
     * 
-    * Pre : af != null
-    * Pre : ao != null
-    * Pre: arc != null
-    * Pre: ap != null
+    * @pre: (af != null) && (ao != null) && (arc != null) && (ap != null)
     * 
     * @param af: anagrafica fruitori
     * @param ao: anagrafica operatori
     * @param arc: archivio risorse
-    * @param ao: archivio prestiti
+    * @param ap: archivio prestiti
      */
     public RaccoltaDati(AnagraficaFruitori af, AnagraficaOperatori ao, Archivio arc, ArchivioPrestiti ap)
     {
@@ -39,6 +36,7 @@ public class RaccoltaDati implements Serializable
     
     /**
      * Metodi get della classe RaccoltaDati
+     * @return i vari attributi della classe RaccoltaDati
      */
     public AnagraficaFruitori getAnagraficaFruitori()
 	{

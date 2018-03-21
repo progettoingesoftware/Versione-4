@@ -26,7 +26,7 @@ public class Operatore extends Utente implements Serializable
     /**
      * Metodo che permette la visualizzazione dell'elenco di Fruitori con relative caratteristiche
      * 
-     * Pre : e != null
+     * @pre : e != null
      * 
      * @param e : l'oggetto indicato dove e' depositato il Vector di Fruitori su cui poter invocare il metodo toString()
      * @return la stringa descrittiva dell'anagrafica dei fruitori
@@ -39,8 +39,8 @@ public class Operatore extends Utente implements Serializable
     /**
      * Metodo che permette l'aggiunta di una risorsa ad una (sotto)categoria dell'archivio
      * 
-     * Pre: (r != null) && (s != null) && !(r in s) 
-     * Post: r in s
+     * @pre: (r != null) && (s != null) && !(r in s) 
+     * @post: r in s
      * 
      * @param r: la risorsa da aggiungere
      * @param s: la (sotto)categoria a cui aggiungere la risorsa
@@ -53,8 +53,8 @@ public class Operatore extends Utente implements Serializable
     /**
      * Metodo che permette la rimozione di una risorsa da una (sotto)categoria dell'archivio
      * 
-     * Pre: (r != null) && (s != null) && (r in s)
-     * Post: !(r in s)
+     * @pre: (r != null) && (s != null) && (r in s)
+     * @post: !(r in s)
      * 
      * @param r: la risorsa da rimuovere
      * @param s: la (sotto)categoria da cui rimuovere la risorsa
